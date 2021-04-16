@@ -1,9 +1,9 @@
-# sparks-library
-Sparks Firmware Library to Connect Device to [Sparks.id](sparks.id) Platform.
+# variabls-library
+Variabls Firmware Library to Connect Device to [variabls](demo.variabls.com) Platform.
 
 Our works is an open source. Feel free to add, modify, and use it.
 
-For full Documentation, please visit [here](https://sparksid.gitbook.io/sparks/).
+For full Documentation, please visit [here](https://variabls.gitbook.io/welcome/).
 
 ## Acknowledgement
 Many thanks to those who build an amazing open-source code and still maintain it up till today. The inspiration came from this amazing Author:
