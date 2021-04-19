@@ -21,7 +21,7 @@
 #define PARAM_FILE "/param.json"
 #define SD_CS 5
 
-#define DEFAULT_USER_AUTH "Variablsdevice"
+#define DEFAULT_USER_AUTH "variablsdevice"
 #define DEFAULT_PASS_AUTH "default"
 
 #if defined(ARDUINO_ARCH_ESP8266)
@@ -62,7 +62,7 @@ String authUsername = "";
 String authPassword = "";
 String chipId;
 
-VariablsMQTT VariablsMQTT;
+VariablsMQTT variablsMQTT;
 
 int ledState = LOW;
 const long ledInterval = 1000;
@@ -76,7 +76,7 @@ void rootPage()
                    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
                    "</head>"
                    "<body>"
-                   "<h1 style=padding-top:5px;text-align:center>Variabls.id Device Firmware</h1>"
+                   "<h1 style=padding-top:5px;text-align:center>Variabls.com Device Firmware</h1>"
                    "<p style=\"padding-top:5px;text-align:center\">" AUTOCONNECT_LINK(COG_24) "</p>"
                                                                                               "</body>"
                                                                                               "</html>";
@@ -320,7 +320,7 @@ class VariablsLib
 private:
   const char *hardwareVersion = "EMS-Lite-0";
   const char *firmwareVersion = "v.0.0.1";
-  const char *mqttServer = "broker.Variabls.id";
+  const char *mqttServer = "broker.sparks.id";
   const int port = 1883;
   const int portSecure = 1883;
 
@@ -375,12 +375,12 @@ private:
       digitalWrite(2, LOW);
       configTime(25200, 0, ntpServer);
       #if defined(ARDUINO_ARCH_ESP8266)
-        if (MDNS.begin("Variablsdevice"))
+        if (MDNS.begin("variablsdevice"))
         {
           MDNS.addService("http", "tcp", 80);
         }
       #elif defined(ARDUINO_ARCH_ESP32)
-        if (MDNS.begin("Variablsdevice"))
+        if (MDNS.begin("variablsdevice"))
         {
           MDNS.addService("http", "tcp", 80);
         }
@@ -414,7 +414,7 @@ public:
         pinMode(19, OUTPUT);
         digitalWrite(19, LOW);
     #endif
-    VariablsMQTT.begin();
+    variablsMQTT.begin();
     Portal.onDetect(startCP);
 
     // queue = xQueueCreate(100, 1024);
@@ -489,7 +489,7 @@ public:
     Serial.println(WiFi.localIP());
     Serial.println(WiFi.SSID());
 
-    VariablsMQTT.connectMQTT();
+    variablsMQTT.connectMQTT();
     
   }
 
@@ -545,8 +545,8 @@ public:
         }
         
     // #endif
-        VariablsMQTT.updateCredential(usernameMQTT, passwordMQTT, deviceKey, chipId);
-        VariablsMQTT.run();
+        variablsMQTT.updateCredential(usernameMQTT, passwordMQTT, deviceKey, chipId);
+        variablsMQTT.run();
         webServer.handleClient();
         Portal.handleRequest();
       }

@@ -8,35 +8,32 @@ Our works is an open source. Feel free to add, modify, and use it.
 
 For full Documentation, please visit [here](https://variabls.gitbook.io/welcome/).
 
-## quick usage
+## Quick Usage
 To use this library, simply download the library and paste it into your 'lib' project folder. This code below is the simple example of 'main.cpp' code to use the Variabls Library:
 
 ```c++
 #include <VariablsLib.h>
 #include <VariablsTask.h>
 
-VariablsLib Variabls;
+VariablsLib variabls;
 VariablsTask task;
 
 void demoTask()
 {
-    if (mqttClient.connected())
-    {
-        float sendRandom = random(100000, 500000) / 100.00;
+    float sendRandom = random(100000, 500000) / 100.00;
 
-        VariablsMQTT.publish("demo/test", 1, sendRandom);
-    }
+    variablsMQTT.publish("demo/test", 1, sendRandom);
 }
 
 void setup()
 {
-    Variabls.begin();
-    task.setTask("testRandom", 15000L, demoTask,0);
+    variabls.begin();
+    task.setTask("testRandom", 15000L, demoTask, 0);
 }
 
 void loop()
 {
-    Variabls.run();
+    variabls.run();
     task.run();
 }
 ```
