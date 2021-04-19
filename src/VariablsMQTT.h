@@ -1,5 +1,5 @@
-#ifndef SPARKS_MQTT_H
-#define SPARKS_MQTT_H
+#ifndef VARIABLS_MQTT_H
+#define VVARIABLS_MQTT_H
 
 #include <MQTT/src/MQTT.h>
 #include <WiFiClient.h>
@@ -7,7 +7,7 @@
 #include <NTPClient/NTPClient.h>
 #include <WiFiUdp.h>
 #include <time.h>
-#include <SparksTime.h>
+#include <VariablsTime.h>
 #include <string.h>
 
 #if defined(ARDUINO_ARCH_ESP8266)
@@ -40,10 +40,10 @@ bool confirmmsg = false; //MQTT
 int queuedId;            //MQTT
 unsigned long startmillis;
 
-class SparksMQTT
+class VariablsMQTT
 {
 public:
-  // SparksMQTT();
+  // VariablsMQTT();
 
   void updateCredential(String _usernameMQTT, String _passwordMQTT, String _deviceKey, String _chipID)
   {
@@ -152,7 +152,7 @@ public:
   }
 
   template <typename D>
-  const char *sparksData(int Pin, D values)
+  const char *VariablsData(int Pin, D values)
   {
     StaticJsonDocument<512> data;
     data[String(Pin)] = values;
@@ -346,13 +346,13 @@ public:
   }
 
 private:
-  static void messageReceived(String &sparkstopic, String &payload)
+  static void messageReceived(String &Variablstopic, String &payload)
   {
-    Serial.println("incoming: " + sparkstopic + " - " + payload);
+    Serial.println("incoming: " + Variablstopic + " - " + payload);
     startmillis = millis();
 
-    char _topic[sparkstopic.length() + 1];
-    sparkstopic.toCharArray(_topic, sparkstopic.length() + 1);
+    char _topic[Variablstopic.length() + 1];
+    Variablstopic.toCharArray(_topic, Variablstopic.length() + 1);
     char *strings[10];
     memset(strings, 0, sizeof(strings));
 
@@ -546,11 +546,11 @@ private:
 
   unsigned long prev_millis_hb = 0;
 
-  const char *mqttServer = "broker.sparks.id";
+  const char *mqttServer = "broker.Variabls.id";
   const int port = 1883;
   const int portSecure = 1883;
 
   const static int MAX_CONTROL = 10;
 };
 
-#endif //SPARKS_MQTT_H
+#endif //Variabls_MQTT_H

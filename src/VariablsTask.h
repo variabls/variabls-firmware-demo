@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-uint64_t SparksMillis(){
+uint64_t VariablsMillis(){
   noInterrupts();
   uint64_t t = millis();
   interrupts();
@@ -10,13 +10,13 @@ uint64_t SparksMillis(){
 typedef void (*task_execute)(void);
 typedef void (*task_execute_p)(void *);
 
-class SparksTask {
+class VariablsTask {
   public:
     // maximum number of functions
     const static int MAX_FUNCTIONS = 16;
 
     void init(){
-      unsigned long current_millis = SparksMillis();
+      unsigned long current_millis = VariablsMillis();
 
       for (int i = 0; i < MAX_FUNCTIONS; i++){
         memset(&task[i], 0, sizeof(task_t));
@@ -41,7 +41,7 @@ class SparksTask {
 
       if (task[taskId].function != NULL){
         memset(&task[taskId], 0, sizeof (task_t));
-        task[taskId].prev_millis = SparksMillis();
+        task[taskId].prev_millis = VariablsMillis();
 
         numTask--;
       }
@@ -49,7 +49,7 @@ class SparksTask {
 
     void run(){
       // Get Millis
-      unsigned long current_millis = SparksMillis();
+      unsigned long current_millis = VariablsMillis();
 
       //Check all task listed to be execute
       for (int i = 0; i < MAX_FUNCTIONS; i++){
@@ -80,7 +80,7 @@ class SparksTask {
                 else {
                   (*(task_execute)task[i].function)(); //without param
                 }
-                Serial.println("[Sparks Task - " + String(i) + "]: " + task[i].taskRun);
+                Serial.println("[Variabls Task - " + String(i) + "]: " + task[i].taskRun);
 
                 task[i].taskRun++; //update number execution after each runs
 
@@ -145,7 +145,7 @@ class SparksTask {
       task[freeTask].hasParam = h;
       task[freeTask].param = p;
       task[freeTask].taskNumRun = n;
-      task[freeTask].prev_millis = SparksMillis();
+      task[freeTask].prev_millis = VariablsMillis();
       task[freeTask].enable = true;
 
       numTask++;

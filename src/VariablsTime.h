@@ -1,5 +1,5 @@
-#ifndef SPARKS_TIME_COUNT
-#define SPARKS_TIME_COUNT
+#ifndef VARIABLS_TIME_COUNT
+#define VARIABLS_TIME_COUNT
 
 #include <time.h>
 #include <NTPClient/NTPClient.h>

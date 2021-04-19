@@ -10,8 +10,8 @@
 #include <ArduinoJson/ArduinoJson.h>
 #include <string.h>
 
-#include <SparksTime.h>
-#include <SparksMQTT.h>
+#include <VariablsTime.h>
+#include <VariablsMQTT.h>
 
 
 #define TRIGGER_PIN 0
@@ -21,7 +21,7 @@
 #define PARAM_FILE "/param.json"
 #define SD_CS 5
 
-#define DEFAULT_USER_AUTH "sparksdevice"
+#define DEFAULT_USER_AUTH "Variablsdevice"
 #define DEFAULT_PASS_AUTH "default"
 
 #if defined(ARDUINO_ARCH_ESP8266)
@@ -62,7 +62,7 @@ String authUsername = "";
 String authPassword = "";
 String chipId;
 
-SparksMQTT sparksMQTT;
+VariablsMQTT VariablsMQTT;
 
 int ledState = LOW;
 const long ledInterval = 1000;
@@ -76,7 +76,7 @@ void rootPage()
                    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
                    "</head>"
                    "<body>"
-                   "<h1 style=padding-top:5px;text-align:center>Sparks.id Device Firmware</h1>"
+                   "<h1 style=padding-top:5px;text-align:center>Variabls.id Device Firmware</h1>"
                    "<p style=\"padding-top:5px;text-align:center\">" AUTOCONNECT_LINK(COG_24) "</p>"
                                                                                               "</body>"
                                                                                               "</html>";
@@ -93,7 +93,7 @@ String deviceID(boolean types)
     char buf[23];
     uint16_t chip = (uint16_t)(chipid >> 32);
     snprintf(buf, 23, "%04X%08X", chip, (uint32_t)chipid); //simplified EMS ID for pairing purpose
-    String chipID = "Sparks-" + String(BOARD_TYPE) + "-" + String(buf);
+    String chipID = "Variabls-" + String(BOARD_TYPE) + "-" + String(buf);
     if (types)
     {
         return chipID;
@@ -194,7 +194,7 @@ const char DEVICE_PAGE[] PROGMEM = R"raw(
           {
             "name" : "caption",
             "type" : "ACText",
-            "value" : "Connection configuration to connect this device to the Sparks platform. Please go to your account to add device key, and contact us if you need help. To apply the change, please restart your device. ",
+            "value" : "Connection configuration to connect this device to the Variabls platform. Please go to your account to add device key, and contact us if you need help. To apply the change, please restart your device. ",
             "style" : "text-align:center;color:#8B0000"
           },
           {
@@ -315,12 +315,12 @@ const char DEVICE_PAGE[] PROGMEM = R"raw(
 
 
 
-class SparksLib
+class VariablsLib
 {
 private:
   const char *hardwareVersion = "EMS-Lite-0";
   const char *firmwareVersion = "v.0.0.1";
-  const char *mqttServer = "broker.sparks.id";
+  const char *mqttServer = "broker.Variabls.id";
   const int port = 1883;
   const int portSecure = 1883;
 
@@ -375,12 +375,12 @@ private:
       digitalWrite(2, LOW);
       configTime(25200, 0, ntpServer);
       #if defined(ARDUINO_ARCH_ESP8266)
-        if (MDNS.begin("sparksdevice"))
+        if (MDNS.begin("Variablsdevice"))
         {
           MDNS.addService("http", "tcp", 80);
         }
       #elif defined(ARDUINO_ARCH_ESP32)
-        if (MDNS.begin("sparksdevice"))
+        if (MDNS.begin("Variablsdevice"))
         {
           MDNS.addService("http", "tcp", 80);
         }
@@ -414,7 +414,7 @@ public:
         pinMode(19, OUTPUT);
         digitalWrite(19, LOW);
     #endif
-    sparksMQTT.begin();
+    VariablsMQTT.begin();
     Portal.onDetect(startCP);
 
     // queue = xQueueCreate(100, 1024);
@@ -452,8 +452,8 @@ public:
       config.retainPortal = true;
       config.boundaryOffset = CREDENTIAL_OFFSET;
       config.hostName = "starsolems";
-      config.title = "Sparks Device WEB UI";
-      config.apid = "Sparks-Device-" + deviceID(false);
+      config.title = "Variabls Device WEB UI";
+      config.apid = "Variabls-Device-" + deviceID(false);
       config.psk = "";
       config.homeUri = "/";
       Portal.config(config);
@@ -489,7 +489,7 @@ public:
     Serial.println(WiFi.localIP());
     Serial.println(WiFi.SSID());
 
-    sparksMQTT.connectMQTT();
+    VariablsMQTT.connectMQTT();
     
   }
 
@@ -545,8 +545,8 @@ public:
         }
         
     // #endif
-        sparksMQTT.updateCredential(usernameMQTT, passwordMQTT, deviceKey, chipId);
-        sparksMQTT.run();
+        VariablsMQTT.updateCredential(usernameMQTT, passwordMQTT, deviceKey, chipId);
+        VariablsMQTT.run();
         webServer.handleClient();
         Portal.handleRequest();
       }
