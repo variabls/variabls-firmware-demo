@@ -1,5 +1,5 @@
 
-![Logo](https://github.com/variabls/variabls-firmware-demo/tree/master/test/variabls_logo.png)
+![Logo](https://user-images.githubusercontent.com/29002137/115189743-2b6cd200-a111-11eb-8adf-ce4ca1f01cb3.png)
 
 # variabls-library
 Variabls Firmware Library to Connect Device to [variabls](demo.variabls.com) Platform.
