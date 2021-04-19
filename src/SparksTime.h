@@ -2,7 +2,7 @@
 #define SPARKS_TIME_COUNT
 
 #include <time.h>
-#include <NTPClient.h>
+#include <NTPClient/NTPClient.h>
 #include <WiFiUdp.h>
 
 

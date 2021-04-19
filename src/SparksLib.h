@@ -5,9 +5,9 @@
 #include "FS.h"
 #include <SPI.h>
 #include <SD.h>
-#include <AutoConnect.h>
-#include <AutoConnectCredential.h>
-#include <ArduinoJson.h>
+#include <AutoConnect/src/AutoConnect.h>
+#include <AutoConnect/src/AutoConnectCredential.h>
+#include <ArduinoJson/ArduinoJson.h>
 #include <string.h>
 
 #include <SparksTime.h>
@@ -41,7 +41,7 @@
   #include <WiFi.h>
   #include <WebServer.h>
   #include <ESPmDNS.h>
-  #include <ESP32Ping.h>
+  #include <Ping/src/ESP32Ping.h>
   #include <HTTPClient.h>
   #include <HTTPUpdate.h>
   #include <SPIFFS.h>

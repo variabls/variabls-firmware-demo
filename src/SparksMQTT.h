@@ -1,19 +1,19 @@
 #ifndef SPARKS_MQTT_H
 #define SPARKS_MQTT_H
 
-#include <MQTT.h>
+#include <MQTT/src/MQTT.h>
 #include <WiFiClient.h>
-#include <ArduinoJson.h>
-#include <NTPClient.h>
+#include <ArduinoJson/ArduinoJson.h>
+#include <NTPClient/NTPClient.h>
 #include <WiFiUdp.h>
 #include <time.h>
 #include <SparksTime.h>
 #include <string.h>
 
 #if defined(ARDUINO_ARCH_ESP8266)
-#include <ESP8266Ping.h>
+#include <Ping/src/ESP8266Ping.h>
 #elif defined(ARDUINO_ARCH_ESP32)
-#include <ESP32Ping.h>
+#include <Ping/src/ESP32Ping.h>
 #endif
 
 WiFiClient netWifi;
