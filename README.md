@@ -8,6 +8,44 @@ Our works is an open source. Feel free to add, modify, and use it.
 
 For full Documentation, please visit [here](https://variabls.gitbook.io/welcome/).
 
+## quick usage
+To use this library, simply download the library and paste it into your 'lib' project folder. This code below is the simple example of 'main.cpp' code to use the Variabls Library:
+
+```c++
+#include <VariablsLib.h>
+#include <VariablsTask.h>
+
+VariablsLib Variabls;
+VariablsTask task;
+
+void demoTask()
+{
+    if (mqttClient.connected())
+    {
+        float sendRandom = random(100000, 500000) / 100.00;
+
+        VariablsMQTT.publish("demo/test", 1, sendRandom);
+    }
+}
+
+void setup()
+{
+    Variabls.begin();
+    task.setTask("testRandom", 15000L, demoTask,0);
+}
+
+void loop()
+{
+    Variabls.run();
+    task.run();
+}
+```
+It will push random number every 15000 ms to topic 'demo/test' forever.  
+
+
+See the [more code example](https://variabls.gitbook.io/welcome/sparks-library/example-code)
+For full Documentation, please visit [here](https://variabls.gitbook.io/welcome/).
+
 ## Acknowledgement
 Many thanks to those who build an amazing open-source code and still maintain it up till today. The inspiration came from this amazing Author:
 1. [Autoconnect](https://github.com/Hieromon/AutoConnect) by Hieromon
