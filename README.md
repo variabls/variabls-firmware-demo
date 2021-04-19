@@ -9,7 +9,7 @@ Our works is an open source. Feel free to add, modify, and use it.
 For full Documentation, please visit [here](https://variabls.gitbook.io/welcome/).
 
 ## Quick Usage
-To use this library, simply download the library and paste it into your 'lib' project folder. This code below is the simple example of 'main.cpp' code to use the Variabls Library:
+To use this library, simply download the library and paste it into your `lib` project folder. This code below is the simple example of `main.cpp` code to use the Variabls Library:
 
 ```c++
 #include <VariablsLib.h>
@@ -41,6 +41,7 @@ It will push random number every 15000 ms to topic 'demo/test' forever.
 
 
 See the [more code example](https://variabls.gitbook.io/welcome/sparks-library/example-code)
+
 For full Documentation, please visit [here](https://variabls.gitbook.io/welcome/).
 
 ## Acknowledgement
